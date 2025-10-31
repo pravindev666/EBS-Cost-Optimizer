@@ -1,1 +1,31 @@
-
+{
+  "TopicName": "EBS-Cost-Optimizer-Notifications",
+  "DisplayName": "EBS Cost Optimizer Notifications",
+  "Attributes": {
+    "Policy": {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "AllowLambdaPublish",
+          "Effect": "Allow",
+          "Principal": {
+            "Service": "lambda.amazonaws.com"
+          },
+          "Action": "SNS:Publish",
+          "Resource": "arn:aws:sns:*:*:EBS-Cost-Optimizer-Notifications",
+          "Condition": {
+            "StringEquals": {
+              "aws:SourceAccount": "ACCOUNT_ID"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "Subscriptions": [
+    {
+      "Protocol": "email",
+      "Endpoint": "your-email@example.com"
+    }
+  ]
+}
