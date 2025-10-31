@@ -1,1 +1,14 @@
-
+{
+  "Name": "EBSCostOptimizerDailySchedule",
+  "Description": "Triggers EBS Cost Optimizer Lambda function daily at 9 AM UTC",
+  "ScheduleExpression": "cron(0 9 * * ? *)",
+  "State": "ENABLED",
+  "Targets": [
+    {
+      "Arn": "arn:aws:lambda:us-east-1:ACCOUNT_ID:function:EBSCostOptimizer",
+      "Id": "EBSCostOptimizerTarget",
+      "Input": "{\"source\": \"eventbridge\", \"scheduled\": true}"
+    }
+  ],
+  "EventBusName": "default"
+}
